@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amarender Kasturi - Tech Innovator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 20% 50%, #120078 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, #ff0080 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, #7928ca 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, #ff4081 0%, transparent 50%),
+                        radial-gradient(circle at 90% 10%, #00d4ff 0%, transparent 50%);
+            animation: bgShift 20s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #ff0080, #7928ca);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff0080, #7928ca, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 30px;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #ff0080, #7928ca);
+            color: white;
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 0, 128, 0.4);
+        }
+
+        /* Section Styling */
+        .section {
+            margin: 100px 0;
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff0080, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            padding: 40px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 0, 128, 0.1), rgba(121, 40, 202, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(255, 0, 128, 0.2);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff0080, #7928ca);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .card-description {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Patent Badge */
+        .patent-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(255, 107, 53, 0.5); }
+            to { box-shadow: 0 0 30px rgba(255, 107, 53, 0.8); }
+        }
+
+        /* Projects Timeline */
+        .timeline {
+            position: relative;
+            padding: 50px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #ff0080, #7928ca, #00d4ff);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 60px 0;
+            width: 50%;
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #ff0080, #7928ca);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -35px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -35px;
+        }
+
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .tech-item {
+            padding: 20px;
+            text-align: center;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tech-item:hover::before {
+            left: 100%;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tech-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ff0080, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 0, 128, 0.1), rgba(0, 212, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item:hover::before {
+            opacity: 1;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff0080, #00d4ff);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 60px;
+            }
+            
+            .timeline-item::before {
+                left: 10px !important;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Floating Elements */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 0, 128, 0.1), rgba(121, 40, 202, 0.1));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <!-- Floating Shapes -->
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🚀 Patent Pending Innovator</div>
+            <h1 class="hero-title">Amarender Kasturi</h1>
+            <p class="hero-subtitle">Full-Stack Developer & Tech Innovator</p>
+            <p class="hero-description">
+                Transforming ideas into revolutionary digital experiences. Patent pending for NearNex - 
+                the next generation of hardware commerce platforms.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="cta-btn cta-primary">
+                    <i class="fas fa-rocket"></i>
+                    View My Innovation
+                </a>
+                <a href="#contact" class="cta-btn cta-secondary">
+                    <i class="fas fa-envelope"></i>
+                    Let's Connect
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- About Section -->
+        <section class="section fade-in" id="about">
+            <div class="section-header">
+                <h2 class="section-title">Revolutionary Mindset</h2>
+                <p class="section-subtitle">
+                    Bridging the gap between imagination and implementation through cutting-edge technology
+                </p>
+            </div>
+            <div class="cards-grid">
+                <div class="card glass-morphism">
+                    <div class="card-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="card-title">AI/ML Innovation</h3>
+                    <p class="card-description">
+                        Specialized in machine learning algorithms and neural networks, with hands-on experience 
+                        in TensorFlow and real-time data analysis for natural language processing.
+                    </p>
+                </div>
+                <div class="card glass-morphism">
+                    <div class="card-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="card-title">Mobile First</h3>
+                    <p class="card-description">
+                        Expert in Flutter development, creating seamless cross-platform experiences 
+                        with intuitive UI/UX design and robust backend integration.
+                    </p>
+                </div>
+                <div class="card glass-morphism">
+                    <div class="card-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="card-title">Cloud Architecture</h3>
+                    <p class="card-description">
+                        AWS-certified cloud solutions architect, designing scalable infrastructure 
+                        for modern applications with Firebase and cloud-native technologies.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section fade-in" id="projects">
+            <div class="section-header">
+                <h2 class="section-title">Revolutionary Projects</h2>
+                <p class="section-subtitle">
+                    Building the future, one innovation at a time
+                </p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item glass-morphism">
+                    <div class="patent-badge">🏆 PATENT PENDING</div>
+                    <h3 class="card-title">NearNex - Revolutionary Commerce Platform</h3>
+                    <p class="card-description">
+                        <strong>Patent Application Filed:</strong> Groundbreaking multi-functional hardware and auto parts 
+                        mobile commerce platform that revolutionizes how users discover, purchase, and service products. 
+                        Features AI-powered recommendations, real-time inventory tracking, and seamless repair scheduling.
+                    </p>
+                    <div class="tech-grid">
+                        <div class="tech-item glass-morphism">
+                            <div class="tech-icon"><i class="fab fa-flutter"></i></div>
+                            <div>Flutter</div>
+                        </div>
+                        <div class="tech-item glass-morphism">
+                            <div class="tech-icon"><i class="fas fa-fire"></i></div>
+                            <div>Firebase</div>
+                        </div>
+                        <div class="tech-item glass-morphism">
+                            <div class="tech-icon"><i class="fas fa-robot"></i></div>
+                            <div>AI/ML</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item glass-morphism">
+                    <h3 class="card-title">Disaster Alert & Resource Mapping System</h3>
+                    <p class="card-description">
+                        Next-generation disaster response platform integrating multiple APIs (USGS, GDACS, OpenWeatherMap) 
+                        for real-time monitoring. Features advanced geospatial visualization, predictive analytics, 
+                        and automated emergency response coordination.
+                    </p>
+                    <div class="tech-grid">
+                        <div class="tech-item glass-morphism">
+                            <div class="tech-icon"><i class="fab fa-python"></i></div>
+                            <div>Python</div>
+                        </div>
+                        <div class="tech-item glass-morphism">
+                            <div class="tech-icon"><i class="fas fa-map"></i></div>
+                            <div>Geospatial</div>
+                        </div>
+                        <div class="tech-item glass-morphism">
+                            <div class="tech-icon"><i class="fas fa-satellite"></i></div>
+                            <div>APIs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section fade-in" id="experience">
+            <div class="section-header">
+                <h2 class="section-title">Elite Experience</h2>
+                <p class="section-subtitle">
+                    Collaborating with industry leaders to shape the future of technology
+                </p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card glass-morphism">
+                    <div class="card-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3 class="card-title">Google AI-ML Virtual Internship</h3>
+                    <p class="card-description">
+                        <strong>AICTE & EduSkills</strong><br>
+                        Advanced machine learning project development using TensorFlow and scikit-learn. 
+                        Specialized in real-time data analysis and natural language processing applications.
+                    </p>
+                </div>
+                
+                <div class="card glass-morphism">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="card-title">Computer Science Engineering</h3>
+                    <p class="card-description">
+                        <strong>SR University</strong> • GPA: 7.5/10<br>
+                        Specializing in AI/ML, Computer Architecture, and Advanced Algorithms. 
+                        Focus on cutting-edge technologies and innovation-driven learning.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="section fade-in" id="certifications">
+            <div class="section-header">
+                <h2 class="section-title">Elite Certifications</h2>
+                <p class="section-subtitle">
+                    Validated expertise from world-class institutions
+                </p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card glass-morphism">
+                    <div class="card-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="card-title">Infosys Springboard Python Fundamentals</h3>
+                    <p class="card-description">
+                        <strong>Infosys</strong> • 2025<br>
+                        Advanced Python programming certification focusing on enterprise-level development 
+                        and industry best practices.
+                    </p>
+                </div>
+                
+                <div class="card glass-morphism">
+                    <div class="card-icon">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <h3 class="card-title">AWS Academy Cloud Foundations</h3>
+                    <p class="card-description">
+                        <strong>Amazon Web Services</strong> • 2024<br>
+                        Comprehensive cloud architecture and infrastructure management certification.
+                    </p>
+                </div>
+                
+                <div class="card glass-morphism">
+                    <div class="card-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="card-title">Meta Database Systems</h3>
+                    <p class="card-description">
+                        <strong>Meta (Facebook)</strong> • 2024<br>
+                        Advanced database design and optimization for scalable applications.
+                    </p>
+                </div>
+                
+                <div class="card glass-morphism">
+                    <div class="card-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3 class="card-title">Google Data Analytics</h3>
+                    <p class="card-description">
+                        <strong>Google</strong> • 2025<br>
+                        Professional data analysis and visualization for business intelligence.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section class="section fade-in" id="skills">
+            <div class="section-header">
+                <h2 class="section-title">Cutting-Edge Arsenal</h2>
+                <p class="section-subtitle">
+                    Mastering tomorrow's technologies today
+                </p>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="tech-item glass-morphism">
+                    <div class="tech-icon"><i class="fab fa-python"></i></div>
+                    <div>Python</div>
+                </div>
+                <div class="tech-item glass-morphism">
+                    <div class="tech-icon"><i class="fab fa-flutter"></i></div>
+                    <div>Flutter</div>
+                </div>
+                <div class="tech-item glass-morphism">
+                    <div class="tech-icon"><i class="fab fa-java"></i></div>
+                    <div>Java</div>
+                </div>
+                <div class="tech-item glass-morphism">
+                    <div class="tech-icon"><i class="fas fa-brain"></i></div>
+                    <div>TensorFlow</div>
+                </div>
+                <div class="tech-item glass-morphism">
+                    <div class="tech-icon"><i class="fab fa-aws"></i></div>
+                    <div>AWS</div>
+                </div>
+                <div class="tech-item glass-morphism">
+                    <div class="tech-icon"><i class="fas fa-fire"></i></div>
+                    <div>Firebase</div>
+                </div>
+                <div class="tech-item glass-morphism">
+                    <div class="tech-icon"><i class="fas fa-database"></i></div>
+                    <div>SQL/NoSQL</div>
+                </div>
+                <div class="tech-item glass-morphism">
+                    <div class="tech-icon"><i class="fab fa-js"></i></div>
+                    <div>JavaScript</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section fade-in" id="contact">
+            <div class="section-header">
+                <h2 class="section-title">Let's Build the Future</h2>
+                <p class="section-subtitle">
+                    Ready to collaborate on revolutionary projects
+                </p>
+            </div>
+            
+            <div class="contact-grid">
+                <a href="mailto:amarenderkasturi@gmail.com" class="contact-item glass-morphism">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <div>Email</div>
+                        <div style="opacity: 0.7; font-size: 0.9rem;">amarenderkasturi@gmail.com</div>
+                    </div>
+                </a>
+                
+                <a href="tel:+919949989460" class="contact-item glass-morphism">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <div>Phone</div>
+                        <div style="opacity: 0.7; font-size: 0.9rem;">+91-9949989460</div>
+                    </div>
+                </a>
+                
+                <a href="http://www.linkedin.com/in/amarender-kasturi-0a11b129a" class="contact-item glass-morphism" target="_blank">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div>
+                        <div>LinkedIn</div>
+                        <div style="opacity: 0.7; font-size: 0.9rem;">Professional Network</div>
+                    </div>
+                </a>
+                
+                <a href="https://github.com/amarenderkasturi" class="contact-item glass-morphism" target="_blank">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div>
+                        <div>GitHub</div>
+                        <div style="opacity: 0.7; font-size: 0.9rem;">Code Repository</div>
+                    </div>
+                </a>
+                
+                <a href="https://www.credly.com/users/amarender-kasturi" class="contact-item glass-morphism" target="_blank">
+                    <div class="contact-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div>
+                        <div>Credly</div>
+                        <div style="opacity: 0.7; font-size: 0.9rem;">Verified Achievements</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for floating shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.floating-shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.2);
+                const yPos = -(scrolled * speed);
+                shape.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+
+        // Add dynamic cursor effect
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.cursor');
+            if (!cursor) {
+                const newCursor = document.createElement('div');
+                newCursor.className = 'cursor';
+                newCursor.style.cssText = `
+                    position: fixed;
+                    width: 20px;
+                    height: 20px;
+                    background: radial-gradient(circle, #ff0080, #7928ca);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    opacity: 0.7;
+                    transition: transform 0.1s ease;
+                `;
+                document.body.appendChild(newCursor);
+            }
+            
+            const currentCursor = document.querySelector('.cursor');
+            currentCursor.style.left = e.clientX - 10 + 'px';
+            currentCursor.style.top = e.clientY - 10 + 'px';
+        });
+
+        // Add hover effects to interactive elements
+        document.querySelectorAll('.card, .contact-item, .tech-item, .cta-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                const cursor = document.querySelector('.cursor');
+                if (cursor) {
+                    cursor.style.transform = 'scale(2)';
+                    cursor.style.opacity = '0.5';
+                }
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                const cursor = document.querySelector('.cursor');
+                if (cursor) {
+                    cursor.style.transform = 'scale(1)';
+                    cursor.style.opacity = '0.7';
+                }
+            });
+        });
+
+        // Initialize animations on load
+        window.addEventListener('load', () => {
+            document.body.style.overflow = 'visible';
+            
+            // Stagger animation for tech items
+            const techItems = document.querySelectorAll('.tech-item');
+            techItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Performance optimization
+        let ticking = false;
+        function updateAnimations() {
+            // Update any frame-based animations here
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateAnimations);
+                ticking = true;
+            }
+        }
+
+        // Add scroll-based performance throttling
+        window.addEventListener('scroll', requestTick);
+    </script>
+</body>
+</html>
